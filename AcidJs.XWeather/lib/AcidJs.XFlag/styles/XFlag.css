@@ -1,0 +1,46 @@
+/*
+ * X-Flag HTML5 Web Component by Martin Ivanov (@wemakesitesnet)
+ * More info regarding this exciting new technology: http://webcomponents.org/, http://www.x-tags.org/, http://www.polymer-project.org/
+ * @author Martin Ivanov
+ * @url developer website: http://wemakesites.net/
+ * @url developer twitter: https://twitter.com/#!/wemakesitesnet
+ * @url developer blog http://acidmartin.wordpress.com/
+ **/
+
+acidjs-xflag
+{
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+acidjs-xflag
+{
+    margin: .5em;
+}
+
+acidjs-xflag img
+{
+    display: block;
+}
+
+acidjs-xflag img
+{
+    width: 100%;
+}
+
+acidjs-xflag[size="large"] img
+{
+    max-width: 200px;
+}
+
+acidjs-xflag[size="medium"] img
+{
+    max-width: 40px;
+}
+
+acidjs-xflag[size="small"] img
+{
+    max-width: 20px;
+}

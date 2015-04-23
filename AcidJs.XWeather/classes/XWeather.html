@@ -1,0 +1,232 @@
+<script src="../lib/jQuery/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+<link rel="stylesheet" href="../styles/XWeather.css" />
+<link rel="import" href="../lib/AcidJs.XFlag/classes/XFlag.html" />
+<script>
+/*
+ * X-Weather HTML5 Web Component by Martin Ivanov (@wemakesitesnet)
+ * More info regarding this exciting new technology: http://webcomponents.org/, http://www.x-tags.org/, http://www.polymer-project.org/
+ * @author Martin Ivanov
+ * @url developer website: http://wemakesites.net/
+ * @url developer twitter: https://twitter.com/wemakesitesnet
+ * @url developer blog http://martinivanov.net
+ **/
+
+/*
+ * USAGE:
+ * 1. If you are planning to use this component for a personal project, please retain the credits in the code. Donation (https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QFUHPWJB2JDBS), however is highly appreciated.
+ * 2. If you will use it on a live website, donation (https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QFUHPWJB2JDBS) is required. 
+ **/
+(function() {
+    
+    "use strict";
+    
+    var
+        W = window,
+        $ = W.jQuery,
+        DEFAULT_WIDTH = 256,
+        DEFAULT_HEIGHT = 64,
+        DEFAULT_UNITS = "metric",
+        DEFAULT_BGCOLOR = "666",
+        OPENWEATHERMAP_REST_ENDPOINT = "http://api.openweathermap.org/data/2.5/weather",
+        NAME = "acidjs-xweather";
+    
+    window.xtag.register(NAME, {
+        
+        lifecycle: {
+            created: function() {
+                this.getData();
+            }
+        },
+        
+        methods: {
+            
+            /*
+             * Templates used by the component
+             * @member {Object} TEMPLATES
+             * @public
+             **/
+            TEMPLATES: {
+                
+                base: [
+                    '<div style="visibility: hidden; background: <#= bgColor #>;">',
+                        '<h3>',
+                            '<# var title = name + ", " + sys.country; #>',
+                            '<div class="acidjs-xweather-grid">',
+                                '<div>',
+                                    '<div>',
+                                        '<acidjs-xflag code="<#= countrycode #>" size="small"></acidjs-xflag>',
+                                    '</div>',
+                                    '<div>',
+                                        '<a title="View <#= title #> map" href="http://openweathermap.org/Maps?zoom=12&lat=<#= coord.lat #>&lon=<#= coord.lon #>&layers=B0FTTFF" target="_blank">',
+                                            '<#= title #>',
+                                        '</a>',
+                                    '</div>',
+                                '</div>',
+                            '</div>',
+                        '</h3>',
+                        '<div class="acidjs-xweather-grid">',
+                            '<div>',
+                                '<div>',
+                                    '<span class="acidjs-xweather-icon acidjs-xweather-icon-<#= icon #>"></span>',
+                                '</div>',
+                                '<div>',
+                                    '<strong>',
+                                        '<#= temp #><span>&deg;<#= temperatureSign #></span>',
+                                    '</strong>',
+                                '</div>',
+                                '<div>',
+                                    '<div class="acidjs-xweather-grid">',
+                                        '<div>',
+                                            '<div>h: <#= tempMax #>&deg;</div>',
+                                        '</div>',
+                                        '<div>',
+                                            '<div>l: <#= tempMin #>&deg;</div>',
+                                        '</div>',
+                                    '</div>',
+                                '</div>',
+                            '</div>',
+                        '</div>',
+                        '<p><#= weather[0].description #></p>',
+                        '<a href="http://wemakesites.net" target="_blank">wemakesites.net</a>',
+                    '</div>'
+                ],
+                
+                error: [
+                    '<div>',
+                        '<p class="acidjs-xweather-error"><#= message #></p>',
+                    '</div>'
+                ]
+            },
+            
+            /*
+             * Cached templates 
+             * @member {Object} VIEWS
+             * @public
+             **/
+            VIEWS: {
+                
+            },
+            
+            /*
+             * Query Gravatar's API
+             * @method getData
+             * @public
+             * @return void
+             **/
+            getData: function() {
+                var
+                    tag = $(this),
+                    city = tag.attr("city").trim(),
+                    bgColor = tag.attr("bgcolor") || DEFAULT_BGCOLOR,
+                    countrycode = tag.attr("countrycode").trim(),
+                    units = tag.attr("units") || DEFAULT_UNITS,
+                    data = {
+                        q: [city, countrycode].join(","),
+                        units: units
+                    };
+            
+                $.ajax({
+                    url: OPENWEATHERMAP_REST_ENDPOINT,
+                    crossDomain: true,
+                    data: data,
+                    dataType: "jsonp",
+                    success: $.proxy(function(data) {
+                        
+                        if("404" === data.cod) {
+                            return tag.html(this.template("error", data));
+                        }
+                        
+                        data.bgColor = bgColor;
+                        data.temp = this.round(data.main.temp, 10);
+                        data.tempMin = this.round(data.main.temp_min, 10);
+                        data.tempMax = this.round(data.main.temp_max, 10);
+                        data.icon = data.weather[0].icon.substring(0, 2);
+                        data.temperatureSign = units === "imperial" ? "f" : "c";
+                        data.countrycode = countrycode;
+                        data.sunrise = this.unixToDate(data.sys.sunrise);
+                        data.sunset = this.unixToDate(data.sys.sunset);
+                        
+                        this.render(data);
+                    }, this)
+                });
+            },
+            
+            /*
+             * Render the component
+             * @method render
+             * @public
+             * @return void
+             **/
+            render: function(data) {
+                var
+                    tag = $(this),
+                    width = tag.attr("width") || DEFAULT_WIDTH,
+                    height = tag.attr("height") || DEFAULT_HEIGHT;
+                
+                tag.html(this.template("base", data));
+                
+                tag.find(" > div").css({
+                    visibility: "visible",
+                    width: width
+                });
+                
+                tag.find("> div > .acidjs-xweather-grid").css({
+                    height: height - tag.find("p").outerHeight() - tag.find("h3").outerHeight() - tag.find("> div > a").outerHeight()
+                });
+                
+                $(this).data(data);
+            },
+            
+            unixToDate: function(timetamp) {
+                var 
+                    date = new Date(timetamp * 1000),
+                    hours = date.getHours(),
+                    minutes = "0" + date.getMinutes(),
+                    seconds = "0" + date.getSeconds(),
+                    formattedTime = hours + ":" + minutes.substr(minutes.length - 2) + ":" + seconds.substr(seconds.length - 2);
+                
+                return formattedTime;
+            },
+            
+            round: function(float, by) {
+                return W.Math.round(float * by) / by;
+            },
+            
+            /*
+             * Compile a template, and output the replaced markup
+             * @method template
+             * @public
+             * @param {String} view template id 
+             * @param {Object} model template data
+             * @return {String}
+             **/
+            template: function(view, model) {
+
+               if(this.TEMPLATES[view] instanceof Array) {
+                   this.TEMPLATES[view] = this.TEMPLATES[view].join("");
+               }
+
+               var
+                   fn = !/\W/.test(view) ? this.VIEWS[view] = this.VIEWS[view] || this.template(this.TEMPLATES[view]) :
+
+                   new window.Function("obj",
+                       "var p = [], print = function() {p.push.apply(p, arguments);};" +
+
+                          "with(obj) {p.push('" +
+
+                          view
+                              .replace(/[\r\t\n]/g, " ")
+                              .split("<#").join("\t")
+                              .replace(/((^|#>)[^\t]*)'/g, "$\r")
+                              .replace(/\t=(.*?)#>/g, "',$1,'")
+                              .split("\t").join("');")
+                              .split("#>").join("p.push('")
+                              .split("\r").join("\\'") + "');} return p.join('');");
+
+               return model || "" ? fn(model) : fn;
+           }
+        }
+    });
+}());
+</script>

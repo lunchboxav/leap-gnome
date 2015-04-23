@@ -1,0 +1,192 @@
+/*
+ * X-Weather HTML5 Web Component by Martin Ivanov (@wemakesitesnet)
+ * More info regarding this exciting new technology: http://webcomponents.org/, http://www.x-tags.org/, http://www.polymer-project.org/
+ * @author Martin Ivanov
+ * @url developer website: http://wemakesites.net/
+ * @url developer twitter: https://twitter.com/wemakesitesnet
+ * @url developer blog http://martinivanov.net
+ **/
+
+/*
+ * USAGE:
+ * 1. If you are planning to use this component for a personal project, please retain the credits in the code. Donation (https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QFUHPWJB2JDBS), however is highly appreciated.
+ * 2. If you will use it on a live website, donation (https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QFUHPWJB2JDBS) is required. 
+ **/
+
+acidjs-xweather,
+acidjs-xweather *
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-family: "Open Sans", Helvetica, Arial, Sans-serif;
+    font-variant: small-caps;
+}
+
+acidjs-xweather p,
+acidjs-xweather > div > a,
+acidjs-xweather h3 + .acidjs-xweather-grid > div > div:nth-child(2)
+{
+    text-align: center;
+}
+
+acidjs-xweather,
+acidjs-xweather .acidjs-xweather-icon
+{
+    display: inline-block;
+}
+
+acidjs-xweather,
+acidjs-xweather .acidjs-xweather-grid > * > *
+{
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+acidjs-xweather h3 + .acidjs-xweather-grid > div > div:first-child,
+acidjs-xweather h3 .acidjs-xweather-grid > div > div:last-child
+{
+    text-align: right;
+}
+
+acidjs-xweather > div
+{
+    margin: .2em;
+    font-size: 16px;
+    background: #666;
+    cursor: default;
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, .5);
+    border-radius: 3px;
+}
+
+acidjs-xweather .acidjs-xweather-grid
+{
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+acidjs-xweather .acidjs-xweather-grid > *
+{
+    display: table-row;
+}
+
+acidjs-xweather .acidjs-xweather-grid > * > *
+{
+    display: table-cell;
+}
+
+acidjs-xweather h3 a
+{
+    text-decoration: none;
+}
+
+acidjs-xweather h3 a:hover
+{
+    text-decoration: underline;
+}
+
+acidjs-xweather h3
+{
+    font-size: .8em;
+    font-weight: 400;
+}
+
+acidjs-xweather h3 .acidjs-xweather-grid > div > div:last-child
+{
+    padding-right: .5em;
+}
+
+acidjs-xweather h3 + .acidjs-xweather-grid
+{
+    table-layout: fixed;
+}
+
+acidjs-xweather h3 + .acidjs-xweather-grid > div > div:nth-child(2)
+{
+    width: 50%;
+}
+
+acidjs-xweather .acidjs-xweather-icon
+{
+    width: 3em;
+    height: 3em;
+    vertical-align: bottom;
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position: center;
+}
+
+acidjs-xweather strong
+{
+    font-size: 2em;
+}
+
+acidjs-xweather p
+{
+    padding: 0 .2em;
+    font-size: .75em;
+    text-transform: lowercase;
+}
+
+acidjs-xweather > div > a
+{
+    display: block;
+    padding: .2em 0 .3em;
+    font-size: .2em;
+    text-transform: uppercase;
+    opacity: .5;
+}
+
+acidjs-xweather .acidjs-xweather-error
+{
+    padding: .5em;
+}
+
+acidjs-xweather .acidjs-xweather-icon-01
+{
+    background-image: url("images/01.svg");
+}
+
+acidjs-xweather .acidjs-xweather-icon-02
+{
+    background-image: url("images/02.svg");
+}
+
+acidjs-xweather .acidjs-xweather-icon-03
+{
+    background-image: url("images/03.svg");
+}
+
+acidjs-xweather .acidjs-xweather-icon-04
+{
+    background-image: url("images/04.svg");
+}
+
+acidjs-xweather .acidjs-xweather-icon-09
+{
+    background-image: url("images/");
+}
+
+acidjs-xweather .acidjs-xweather-icon-10
+{
+    background-image: url("images/10.svg");
+}
+
+acidjs-xweather .acidjs-xweather-icon-11
+{
+    background-image: url("images/11.svg");
+}
+
+acidjs-xweather .acidjs-xweather-icon-13
+{
+    background-image: url("images/13.svg");
+}
+
+acidjs-xweather .acidjs-xweather-icon-50
+{
+    background-image: url("images/50.svg");
+}

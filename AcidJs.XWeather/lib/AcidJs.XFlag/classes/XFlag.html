@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="../styles/XFlag.css" />
+<script>
+/*
+ * X-Flag HTML5 Web Component by Martin Ivanov (@wemakesitesnet)
+ * More info regarding this exciting new technology: http://webcomponents.org/, http://www.x-tags.org/, http://www.polymer-project.org/
+ * @author Martin Ivanov
+ * @url developer website: http://wemakesites.net/
+ * @url developer twitter: https://twitter.com/#!/wemakesitesnet
+ * @url developer blog http://acidmartin.wordpress.com/
+ **/
+(function() {
+    
+    "use strict";
+    
+    var
+        WIN = window,
+        XTAG = WIN.xtag,
+        EXTENSIONS = [
+            "gif",
+            "png"
+        ],
+        SIZES = {
+            small: "s",
+            medium: "m",
+            large: "x"
+        },
+        TEMPLATES = {
+            url: [
+                'http://www.geonames.org/flags/{{size}}/{{code}}.{{extension}}'
+            ],
+            flag: [
+                '<img src="{{url}}" alt="{{url}}" />'
+            ]
+        };
+    
+    XTAG.register("acidjs-xflag", {
+        lifecycle: {
+            
+            created: function() {
+                var
+                    code = this.getAttribute("code"),
+                    size = this.getAttribute("size") || "medium";
+                    
+                if(!code) {
+                    return window.console.error("AcidJs.XFlag: country code needs to be specified in the tag.");
+                }
+                
+                this.data = {
+                    code: code,
+                    size: size
+                };
+                
+                this._flag();
+            },
+                    
+            attributeChanged: function(attribute, oldValue, newValue) {
+                attribute = attribute || "";
+                oldValue = oldValue || "";
+                newValue = newValue || "";
+                
+                this.data[attribute] = newValue;
+                this._flag();
+            }
+        },
+        
+        methods: {
+            
+            /*
+             * Render a flag
+             * @method template
+             * @private
+             * @return void
+             **/
+            _flag: function() {
+                
+                var
+                    data = this.data,
+                    size = SIZES[data.size].toLowerCase(),
+                    code = data.code.toLowerCase();
+                
+                this.innerHTML = this._template("flag", {
+                    url: this._template("url", {
+                        size: size,
+                        code: code,
+                        extension: size === "x" ? EXTENSIONS[0] : EXTENSIONS[1]
+                    })
+                });
+            },
+            
+            /*
+             * Compile a template and return it as a string
+             * @method template
+             * @param {String} view name of the template
+             * @param {Object} template data
+             * @private
+             * @return void
+             **/
+            _template: function(view, model) {
+                 var 
+                     html = TEMPLATES[view] || [];
+
+                 model = model || {};
+
+                 html = html.join("");
+
+                 for(var key in model) {
+                     if(model.hasOwnProperty(key)) {
+                         var
+                             value = model[key],
+                             regexp = new RegExp("{{" + key + "}}", "g");
+
+                         html = html.replace(regexp, value);
+                     }
+                 }
+
+                 return html;
+             }
+        }
+    });
+}());
+</script>

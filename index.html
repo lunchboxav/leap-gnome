@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Leap GNOME</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- temporary styling of control area -->
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"></script>    
+    <!-- weather -->
+    <script src="AcidJs.XWeather/lib/xTag/x-tag-components.js"></script>
+    <link rel="import" href="AcidJs.XWeather/classes/XWeather.html" />
+
+    <!-- clock -->
+    <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+    <!-- <script type="text/javascript" src="js/coolclock.js"></script> -->
+    <!--<script type="text/javascript" src="js/moreskins.js"></script>-->
+</head>
+
+<body onload="noHighlight()">
+
+  <div class="main-container">
+    <div class="content-container">
+      <section id="control-area" onmousemove="highlight(event)" onmouseleave="noHighlight(event)">
+        move the mouse here
+      </section>
+      <section id="demo"></section>
+      <h1>Leap GNOME</h1>
+      <div class="packery js-packery">
+        <div class="item w2 h4" style="background-color:#1BBC9B" id="news">
+            <h2 id="news"> News </h2>
+          <!-- start feedwind code --><script type="text/javascript">document.write('\x3Cscript type="text/javascript" src="' + ('https:' == document.location.protocol ? 'https://' : 'http://') + 'feed.mikle.com/js/rssmikle.js">\x3C/script>');</script><script type="text/javascript">(function() {var params = {rssmikle_url: "http://www.linuxjournal.com/blog/feed",rssmikle_frame_width: "310",rssmikle_frame_height: "560",frame_height_by_article: "0",rssmikle_target: "_blank",rssmikle_font: "Arial, Helvetica, sans-serif",rssmikle_font_size: "12",rssmikle_border: "off",responsive: "off",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "on",autoscroll: "on",scrolldirection: "up",scrollstep: "10",mcspeed: "20",sort: "Off",rssmikle_title: "on",rssmikle_title_sentence: " ", rssmikle_title_link: "",rssmikle_title_bgcolor: "#1BBC9B",rssmikle_title_color: "#FFFFFF",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#1BBC9B",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#FFFFFF",rssmikle_item_border_bottom: "on",rssmikle_item_description: "on",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#FFFFFF",rssmikle_item_date: "gl1",rssmikle_timezone: "Etc/GMT",datetime_format: "%b %e, %Y %l:%M:%S %p",item_description_style: "text+tn",item_thumbnail: "full",item_thumbnail_selection: "auto",article_num: "15",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><div style="font-size:10px; text-align:center; width:300px;"><a href="http://feed.mikle.com/" target="_blank" style="color:#CCCCCC;"></a><!--Please display the above link in your web page according to Terms of Service.--></div><!-- end feedwind code -->
+        </div>
+        <div class="item w4 h2" id="video-player">
+          <!-- <iframe width="310" height="290" src="https://www.youtube.com/embed/9QZkCQSHnko" frameborder="0" allowfullscreen></iframe> -->
+          <video id="myVideo" width="630" height="290" controls>
+            <source src="video/Patent_Absurdity.ogv" type="video/ogg">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+        <div class="item w2 h2" id="twitter-tl">
+          <a class="twitter-timeline" href="https://twitter.com/hashtag/GNOME" data-widget-id="586072048763547648">#GNOME Tweets</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <div class="item w3 h3" id="image-gallery">
+          <a class="image-popup-vertical-fit" href="img/moog.jpg"><img src="img/moog.jpg" /></a>
+        </div>
+        <div class="item w2 h2" id="todo">
+          <form method="post">
+              <!-- <fieldset> -->
+              <ul class="todo">
+                  <h2>To Do List</h2>
+                  <li class="todo"><input type="checkbox" name="todo-1" value="Buy" />Buy DVD <br />
+                  <li class="todo"><input type="checkbox" name="todo-2" value="Checkout" />Checkout latest One Piece<br />
+                  <li class="todo"><input type="checkbox" name="todo-3" value="Fix Issue" />Fix issue #2<br />
+                  <li class="todo"><input type="checkbox" name="todo-4" value="Test Scenario" />Test scenario #1<br />
+                  <li class="todo"><input type="checkbox" name="todo-5" value="Install OwnCloud" />Install OwnCloud<br />
+                  <li class="todo"><input type="checkbox" name="todo-6" value="Fix Arduino" />Fix Arduino issue<br />
+                  <li class="todo"><input type="checkbox" name="todo-6" value="Fix Arduino" />Pick up wife<br />
+              </ul>
+              <!-- </fieldset> -->
+          </form>
+        </div>
+        <div class="item w2 h2" id="note-container">
+          <h2> Note </h2>
+          <textarea class="note"> </textarea>
+        </div>
+        <div class="item clear-bg h1" id="weather-info">
+          <acidjs-xweather city="Jakarta" width="245" height="140" countrycode="id" bgcolor="#0C9"></acidjs-xweather>
+        </div>
+        <!-- <div class="item clear-bg">
+          <canvas id="clockid" class="CoolClock:Skin:90:GMT+7" style="width: 180px; height: 180px; margin-top: 5px; margin-left: 35px;"></canvas>
+        </div> -->
+        <div class="item clear-bg" id="exchange-rate-info">
+          <!-- Exchange Rates Script - EXCHANGERATEWIDGET.COM -->
+          <div style="width:250px;border:1px solid #2D6AB4;text-align:left;"><div style="text-align:left;background-color:#2D6AB4;width:100%;border-bottom:0px;height:22px; font-size:12px;font-weight:bold;padding:5px 0px;"><span style="margin-left:2px;background-image:url("http://www.exchangeratewidget.com/flag.png"); background-position: 0 -448px; width:100%; height:15px; background-repeat:no-repeat;padding-left:5px;"><a href="https://www.exchangeratewidget.com/" style="color:#FFFFFF; text-decoration:none;padding-left:22px;">Indonesian Rupiah Rates</a></span></div><script type="text/javascript" src="http://www.exchangeratewidget.com/converter.php?l=en&f=IDR&t=USD,EUR,GBP,JPY,AUD,MYR,SGD,&a=1000&d=F0F0F0&n=FFFFFF&o=000000&v=5"></script></div>
+          <!-- End of Exchange Rates Script -->
+        </div>
+    </div>
+  </div>
+  
+  <script src='http://packery.metafizzy.co/packery.pkgd.js'></script>
+  <script src="js/jquery.magnific-popup.js"></script>
+  <script>
+    $(document).ready(function($) {
+      //Hover Highlight global function
+      window.highlight = function highlight(event) {
+        var x = event.clientX;
+        var y = event.clientY;
+        var boxWidth = document.getElementById('control-area').offsetWidth;
+        var boxHeight = document.getElementById('control-area').offsetHeight;
+
+        if (x < boxWidth/8) {
+          $(window).scrollTo($('#news'),800);          
+          $('#news').css("opacity","1.0");
+          $('#news').siblings().css("opacity","0.2");
+        }
+        else if (x > boxWidth/8 && x < 2*boxWidth/8) {
+          $(window).scrollTo($('#video-player'),800);          
+          $('#video-player').css("opacity","1.0");
+          $('#video-player').siblings().css("opacity","0.2");
+        }
+        else if (x > 2*boxWidth/8 && x < 3*boxWidth/8) {
+          $(window).scrollTo($('#twitter-tl'),800);          
+          $('#twitter-tl').css("opacity","1.0");
+          $('#twitter-tl').siblings().css("opacity","0.2");
+        }
+        else if (x > 3*boxWidth/8 && x < 4*boxWidth/8) {
+          $(window).scrollTo($('#image-gallery'),800);
+          $('#image-gallery').css("opacity","1.0");
+          $('#image-gallery').siblings().css("opacity","0.2");
+        }
+        else if (x > 4*boxWidth/8 && x < 5*boxWidth/8) {
+          $(window).scrollTo($('#note-container'),800);
+          $('#note-container').css("opacity","1.0");
+          $('#note-container').siblings().css("opacity","0.2");
+        }
+        else if (x > 5*boxWidth/8 && x < 6*boxWidth/8) {
+          $(window).scrollTo($('#todo'),800);
+          $('#todo').css("opacity","1.0");
+          $('#todo').siblings().css("opacity","0.2");
+        }
+        else if (x > 6*boxWidth/8 && x < 7*boxWidth/8) {
+          $(window).scrollTo($('#weather-info'),800);
+          $('#weather-info').css("opacity","1.0");
+          $('#weather-info').siblings().css("opacity","0.2");
+        }
+        else if (x > 7*boxWidth/8 && x < 8*boxWidth/8) {
+          $(window).scrollTo($('#exchange-rate-info'),800);
+          $('#exchange-rate-info').css("opacity","1.0");
+          $('#exchange-rate-info').siblings().css("opacity","0.2");
+        }
+      }
+
+      window.noHighlight = function noHighlight(event) {
+        $('#news').css("opacity","1.0");
+        $('#video-player').css("opacity","1.0");
+        $('#twitter-tl').css("opacity","1.0");
+        $('#exchange-rate-info').css("opacity","1.0");
+        $('#weather-info').css("opacity","1.0");
+        $('#note-container').css("opacity","1.0");
+        $('#todo').css("opacity","1.0");
+        $('#image-gallery').css("opacity","1.0");
+      }
+
+      //Pop up
+      $('.image-popup-vertical-fit').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        mainClass: 'mfp-img-mobile',
+        image: {
+          verticalFit: true
+        }
+      });
+    });
+      //Hover Highlight 
+      /*
+      $(".item").hover(highlight, noHighlight);
+      });
+
+      function highlight() {
+        $(this).siblings().css("opacity","0.5");
+      }
+
+      function noHighlight() {
+        $(this).siblings().css("opacity","1.0");
+      }
+      */
+  </script>
+</body>
+
+</html>
