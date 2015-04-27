@@ -8,8 +8,6 @@
   <title>Leap GNOME</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
-
-    <!-- temporary styling of control area -->
   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"></script>    
@@ -23,13 +21,9 @@
     <!--<script type="text/javascript" src="js/moreskins.js"></script>-->
 </head>
 
-<body onload="noHighlight()">
-
+<body>
   <div class="main-container">
     <div class="content-container">
-      <section id="control-area" onmousemove="highlight(event)" onmouseleave="noHighlight(event)">
-        move the mouse here
-      </section>
       <section id="demo"></section>
       <h1>Leap GNOME</h1>
       <div class="packery js-packery">
@@ -87,92 +81,7 @@
   
   <script src='http://packery.metafizzy.co/packery.pkgd.js'></script>
   <script src="js/jquery.magnific-popup.js"></script>
-  <script>
-    $(document).ready(function($) {
-      //Hover Highlight global function
-      window.highlight = function highlight(event) {
-        var x = event.clientX;
-        var y = event.clientY;
-        var boxWidth = document.getElementById('control-area').offsetWidth;
-        var boxHeight = document.getElementById('control-area').offsetHeight;
-
-        if (x < boxWidth/8) {
-          $(window).scrollTo($('#news'),800);          
-          $('#news').css("opacity","1.0");
-          $('#news').siblings().css("opacity","0.2");
-        }
-        else if (x > boxWidth/8 && x < 2*boxWidth/8) {
-          $(window).scrollTo($('#video-player'),800);          
-          $('#video-player').css("opacity","1.0");
-          $('#video-player').siblings().css("opacity","0.2");
-        }
-        else if (x > 2*boxWidth/8 && x < 3*boxWidth/8) {
-          $(window).scrollTo($('#twitter-tl'),800);          
-          $('#twitter-tl').css("opacity","1.0");
-          $('#twitter-tl').siblings().css("opacity","0.2");
-        }
-        else if (x > 3*boxWidth/8 && x < 4*boxWidth/8) {
-          $(window).scrollTo($('#image-gallery'),800);
-          $('#image-gallery').css("opacity","1.0");
-          $('#image-gallery').siblings().css("opacity","0.2");
-        }
-        else if (x > 4*boxWidth/8 && x < 5*boxWidth/8) {
-          $(window).scrollTo($('#note-container'),800);
-          $('#note-container').css("opacity","1.0");
-          $('#note-container').siblings().css("opacity","0.2");
-        }
-        else if (x > 5*boxWidth/8 && x < 6*boxWidth/8) {
-          $(window).scrollTo($('#todo'),800);
-          $('#todo').css("opacity","1.0");
-          $('#todo').siblings().css("opacity","0.2");
-        }
-        else if (x > 6*boxWidth/8 && x < 7*boxWidth/8) {
-          $(window).scrollTo($('#weather-info'),800);
-          $('#weather-info').css("opacity","1.0");
-          $('#weather-info').siblings().css("opacity","0.2");
-        }
-        else if (x > 7*boxWidth/8 && x < 8*boxWidth/8) {
-          $(window).scrollTo($('#exchange-rate-info'),800);
-          $('#exchange-rate-info').css("opacity","1.0");
-          $('#exchange-rate-info').siblings().css("opacity","0.2");
-        }
-      }
-
-      window.noHighlight = function noHighlight(event) {
-        $('#news').css("opacity","1.0");
-        $('#video-player').css("opacity","1.0");
-        $('#twitter-tl').css("opacity","1.0");
-        $('#exchange-rate-info').css("opacity","1.0");
-        $('#weather-info').css("opacity","1.0");
-        $('#note-container').css("opacity","1.0");
-        $('#todo').css("opacity","1.0");
-        $('#image-gallery').css("opacity","1.0");
-      }
-
-      //Pop up
-      $('.image-popup-vertical-fit').magnificPopup({
-        type: 'image',
-        closeOnContentClick: true,
-        mainClass: 'mfp-img-mobile',
-        image: {
-          verticalFit: true
-        }
-      });
-    });
-      //Hover Highlight 
-      /*
-      $(".item").hover(highlight, noHighlight);
-      });
-
-      function highlight() {
-        $(this).siblings().css("opacity","0.5");
-      }
-
-      function noHighlight() {
-        $(this).siblings().css("opacity","1.0");
-      }
-      */
-  </script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>
