@@ -1,6 +1,7 @@
 // Do div highlighting and window focusing
 // Do item popup
 
+
 $(document).ready(function($) {
   //init popup first
   //Pop up
@@ -17,14 +18,25 @@ $(document).ready(function($) {
 	  verticalFit: true
 	}
   });
-  
+
+  // focus function
+  var $container = $('.packery').packery();
+
+  $container.on( 'click', '.item', function( event ) {
+    // change size of item via class
+    $( event.target ).toggleClass('gigante');
+    // trigger layout
+    $container.packery();
+    console.log("berubah");
+  });
+
   var optionCounter = 0;
   $(document).keydown(function(e) {
-	if (e.ctrlKey && ( e.which == 73)) {
+	if (e.ctrlKey && e.altKey && ( e.which == 73)) {
 		optionCounter++;
 		console.log(optionCounter);
 	}
-	else if (e.ctrlKey && ( e.which == 89)) {
+	else if (e.ctrlKey && e.altKey && ( e.which == 89)) {
 		optionCounter--;
 		console.log(optionCounter);
 	}
