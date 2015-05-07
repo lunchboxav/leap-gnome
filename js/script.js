@@ -6,7 +6,7 @@ $(document).ready(function($) {
   var $container = $('.packery').packery();
   var optionCounter = 0;
   
-  $container.focus();
+  // $container.focus();
   
   function applyGigante($target) {
     var isGigante = $target.hasClass('gigante');
@@ -31,9 +31,8 @@ $(document).ready(function($) {
   }
   
   // highlight function
-  var counter = 8;
   var optionCounter = 0;
-  var itemList = ['#news','#video-player','#twitter-tl','#image-gallery','#todo','#note-container','#weather-info','#exchange-rate-info'];
+  var itemList = ['#news','#video-player','#twitter-tl','#image-gallery','#todo','#note-container','#weather-info','#exchange-rate-info','#terminal-emulation'];
   $(document).keyup(function(e) {
     
     $item = $(itemList[optionCounter]);
@@ -56,9 +55,6 @@ $(document).ready(function($) {
       applyGigante($item);
       return;
     }
-    //optionCounter = counter % 8;
-
-    console.log($item);
    
     /* else {
       $('#news').css("opacity","1.0");

@@ -116,7 +116,7 @@ h2 {
 }
 
 #news iframe #container {
-  margin-top: -10px; !important 
+  margin-top: -10px; 
 }
 
 .item li.news {
@@ -140,6 +140,15 @@ video#myVideo {
 .item.clear-bg {
   background: none;
   padding: 0 0 0 0;
+}
+
+#twitter-widget-0{
+   width: 100% !important;  
+   height: 98% !important;
+}
+
+.item.gigante #twitter-widget-0 {
+  height: 99% !important;
 }
 
 .item ul.todo {

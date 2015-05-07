@@ -1,0 +1,21 @@
+div#terminal-emulation { word-wrap: break-word; }
+/* Second console */
+div#terminal-emulation { font-size: 14px; margin-top:1em }
+div#terminal-emulation div.jquery-console-inner
+ { height:100%; background:#2D3E50; padding:0.5em;
+   overflow:auto }
+div#terminal-emulation div.jquery-console-prompt-box
+ { color:#0DC363; font-family:monospace; }
+div#terminal-emulation div.jquery-console-focus span.jquery-console-cursor
+ { background:#fff; color:#eee; font-weight:bold }
+div#terminal-emulation div.jquery-console-message-error
+ { color:#ef0505; font-family:sans-serif; font-weight:bold;
+   padding:0.1em; }
+div#terminal-emulation div.jquery-console-message-success
+ { color:#41CDF3; font-family:monospace;
+   padding:0.1em; }
+div#terminal-emulation div.jquery-console-welcome
+ { color:#41CDF3; font-family:monospace;
+   padding:0.1em; }
+div#terminal-emulation span.jquery-console-prompt-label { font-weight:bold; color:#AD961C; }
+.item.gigante div#terminal-emulation div.jquery-console-inner { height: 580px; }
